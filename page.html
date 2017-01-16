@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A-mock Webpage</title>
+	<style type="text/css">
+		#main-content{
+			max-width: 1024px;
+			margin: auto;
+		}
+		.title{
+			font-weight: bolder;
+			font-size: 28px;
+		}
+		.banner img{
+			width: 100%;
+			height: 350px;
+			
+		}
+		footer{
+			background-color: #dce;
+			padding: 20px;
+			padding-right:0px;
+			padding-left: 0px;
+			font-weight: bolder;
+			float: left;
+			width: 100%;
+		}
+		.copy{
+			float:left;
+		}
+		.powered{
+			float: right;
+		}
+		
+		.container {
+			display: inline-block;
+			cursor: pointer;
+			float:right;
+		}
+
+		.bar1, .bar2, .bar3 {
+			width: 35px;
+			height: 5px;
+			background-color: #333;
+			margin: 6px 0;
+			transition: 0.4s;
+		}
+
+		/* Rotate first bar */
+		.change .bar1 {
+			-webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+			transform: rotate(-45deg) translate(-9px, 6px) ;
+		}
+
+		/* Fade out the second bar */
+		.change .bar2 {
+			opacity: 0;
+		}
+
+		/* Rotate last bar */
+		.change .bar3 {
+			-webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+			transform: rotate(45deg) translate(-8px, -8px) ;
+		}
+		.movieBox{
+			padding: 10px;
+			width: 80%;
+		}
+		.addBtn{
+			padding: 10px;
+		}
+		.input-div{
+			background-color: #eee;
+			width: 40%;
+			padding: 20px;
+			display: block;
+			float: left;
+		}
+		.movies-box{
+			width: 40%;
+			padding: 20px;
+			display: block;
+			float: right;
+		}
+		#msg{
+			color: red;
+			font-weight: bold;
+			font-size: 12px;
+		}
+		#list li{
+			margin: 5px;
+			padding: 5px;
+			font-size: 18px;
+			font-weight: bold;
+		}
+
+	</style>
+  </head>
+  <body>
+	<section id="main-content">
+    <div class="title">
+	<span>Movies Mocks</span>
+	<div class="container" onclick="myFunction(this)">
+	  <div class="bar1"></div>
+	  <div class="bar2"></div>
+	  <div class="bar3"></div>
+	</div>
+	</div>
+	<div class="banner">
+		<img src="https://cdn.pixabay.com/photo/2016/12/14/04/08/ray-1905603_960_720.png" />
+	</div>
+	<article class='article'>
+		<h1>Hello Friend</h1>
+		<div class='input-div'>
+			<h2>What are your favorite movies?</h2>
+			<form onSubmit="event.preventDefault(); addMovie(this)">
+				<input type="text" placeholder="Enter movie title..." id="movie" class="movieBox" />
+				<button onClick="event.preventDefault(); addMovie(this)" class="addBtn" type="submit"> ADD </button>
+				<br><span id="msg"></span>
+				<hr />
+			</form>
+		</div>
+		<div class="movies-box">
+			<h2>Movies List</h2><hr />
+			<ul id="list">
+				
+			</ul>
+		</div>
+	</article>
+	<footer><span class="copy">Copyright &copy; 2017</span><span class="powered">Powered by amock.io</span></footer>
+	</section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="application/javascript">
+		function myFunction(x) {
+			x.classList.toggle("change");
+		}
+		function addMovie(e){
+			var movie = $("#movie").val();
+			if(movie == "" || typeof movie == "undefined")
+			{
+				$("#msg").text("Text box is empty. Please enter your movie title.");
+			}
+			else{
+				$("#movie").val("");
+				$("#msg").text("");
+				var list = $("#list").html();
+				var newList = list + "<li>" + movie + "</li>";
+				$("#list").html(newList);
+			}
+			return false;
+		}
+	</script>
+  </body>
+</html>
